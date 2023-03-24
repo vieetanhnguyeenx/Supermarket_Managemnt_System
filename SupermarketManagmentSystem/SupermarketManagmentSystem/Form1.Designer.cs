@@ -49,9 +49,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblSeller = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTile
@@ -96,6 +103,7 @@
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -105,6 +113,7 @@
             this.btnEdit.TabIndex = 15;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnClear
             // 
@@ -114,6 +123,7 @@
             this.btnClear.TabIndex = 14;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnAdd
             // 
@@ -148,6 +158,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(203, 23);
             this.txtPrice.TabIndex = 10;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // txtQuantity
             // 
@@ -155,6 +166,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(203, 23);
             this.txtQuantity.TabIndex = 9;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // txtName
             // 
@@ -162,6 +174,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(203, 23);
             this.txtName.TabIndex = 8;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtID
             // 
@@ -179,6 +192,7 @@
             this.btnRefresh.TabIndex = 6;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // cbbFilterCategory
             // 
@@ -187,6 +201,7 @@
             this.cbbFilterCategory.Name = "cbbFilterCategory";
             this.cbbFilterCategory.Size = new System.Drawing.Size(121, 23);
             this.cbbFilterCategory.TabIndex = 5;
+            this.cbbFilterCategory.SelectedIndexChanged += new System.EventHandler(this.cbbFilterCategory_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -239,11 +254,55 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // lblSeller
+            // 
+            this.lblSeller.AutoSize = true;
+            this.lblSeller.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSeller.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblSeller.Location = new System.Drawing.Point(12, 186);
+            this.lblSeller.Name = "lblSeller";
+            this.lblSeller.Size = new System.Drawing.Size(60, 21);
+            this.lblSeller.TabIndex = 2;
+            this.lblSeller.Text = "Sallers";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label7.Location = new System.Drawing.Point(12, 261);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 21);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Category";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label8.Location = new System.Drawing.Point(9, 351);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 21);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Selling";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 625);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblSeller);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -252,7 +311,10 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -278,5 +340,10 @@
         private Label label2;
         private DataGridView dataGridView1;
         private ErrorProvider errorProvider1;
+        private ErrorProvider errorProvider2;
+        private ErrorProvider errorProvider3;
+        private Label label8;
+        private Label label7;
+        private Label lblSeller;
     }
 }
