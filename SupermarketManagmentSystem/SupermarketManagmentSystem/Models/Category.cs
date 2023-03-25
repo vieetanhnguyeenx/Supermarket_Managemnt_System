@@ -9,10 +9,7 @@ public partial class Category
 
     public string Name { get; set; } = null!;
 
-    public virtual ICollection<Product> Products { get; } = new List<Product>();
+    public string? Description { get; set; }
 
-    public string getName()
-    {
-        return Name;
-    }
+    public virtual ICollection<Product> Products { get; } = new List<Product>();
 }

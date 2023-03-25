@@ -102,6 +102,16 @@ namespace SupermarketManagmentSystem
                 check = false;
                 errorProvider2.SetError(txtPrice, "Invalid Format!");
             }
+            if (quantity < 1)
+            {
+                check = false;
+                errorProvider1.SetError(txtQuantity, "Invalid Format!");
+            }
+            if (price < 1)
+            {
+                check = false;
+                errorProvider2.SetError(txtPrice, "Invalid Format!");
+            }
             return check;
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -123,7 +133,7 @@ namespace SupermarketManagmentSystem
                 ReloadData();
             }
 
-
+            //public int FakeId { get; set; }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -179,6 +189,10 @@ namespace SupermarketManagmentSystem
                                select p).FirstOrDefault();
                 if (product != null)
                 {
+                    var e12 = context.Entry(product);
+                    e12.Collection(p => p.OrderDetails).Load();
+                    context.RemoveRange(product.OrderDetails);
+                    context.SaveChanges();
                     context.Products.Remove(product);
                     context.SaveChanges();
                     MessageBox.Show("Delete Successfully", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -240,6 +254,44 @@ namespace SupermarketManagmentSystem
         private void txtName_TextChanged(object sender, EventArgs e)
         {
             errorProvider3.Clear();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            CategoryForm form = new CategoryForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+
+        }
+
+        private void lblSeller_Click(object sender, EventArgs e)
+        {
+            UserManagmentForm form = new UserManagmentForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            SallerManagmentForm form = new SallerManagmentForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            ViewOrdersForm form = new ViewOrdersForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void cbbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
