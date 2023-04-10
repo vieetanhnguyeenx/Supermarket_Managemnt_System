@@ -43,22 +43,26 @@ namespace SupermarketManagmentSystem
             List<string> roleList = (from r in context.Roles
                                      select r.RoleName).ToList();
             cbbRole.DataSource = roleList.ToList();
-            int id = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
-            var acc = (from a in context.Accounts
-                       where a.Id == id
-                       select a).FirstOrDefault();
-            if (acc != null)
+            if (account.Count > 0)
             {
-                var e1 = context.Entry(acc);
-                e1.Reference(p => p.Role).Load();
-                txtID.Text = acc.Id.ToString();
-                txtPassword.Text = acc.Password;
-                txtFullName.Text = acc.FullName;
-                txtPhone.Text = acc.Phone;
-                txtUserName.Text = acc.Username;
-                cbbRole.SelectedIndex = cbbRole.FindStringExact(acc.Role.RoleName);
-                cbbRole.SelectedIndex = cbbRole.Items.IndexOf(acc.Role.RoleName);
+                int id = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+                var acc = (from a in context.Accounts
+                           where a.Id == id
+                           select a).FirstOrDefault();
+                if (acc != null)
+                {
+                    var e1 = context.Entry(acc);
+                    e1.Reference(p => p.Role).Load();
+                    txtID.Text = acc.Id.ToString();
+                    txtPassword.Text = acc.Password;
+                    txtFullName.Text = acc.FullName;
+                    txtPhone.Text = acc.Phone;
+                    txtUserName.Text = acc.Username;
+                    cbbRole.SelectedIndex = cbbRole.FindStringExact(acc.Role.RoleName);
+                    cbbRole.SelectedIndex = cbbRole.Items.IndexOf(acc.Role.RoleName);
+                }
             }
+
 
 
         }

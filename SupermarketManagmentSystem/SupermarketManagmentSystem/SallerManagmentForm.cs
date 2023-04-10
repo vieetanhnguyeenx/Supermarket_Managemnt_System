@@ -216,7 +216,7 @@ namespace SupermarketManagmentSystem
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             var acc = (from a in context.Accounts
-                       where a.Id == 2
+                       where a.Id == 1
                        select a).FirstOrDefault();
             if (acc != null)
             {
